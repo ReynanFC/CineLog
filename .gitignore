@@ -1,0 +1,38 @@
+# Gradle / arquivos gerados
+.gradle/
+**/build/
+captures/
+
+# Configuracoes locais do Android SDK
+local.properties
+
+# Android Studio / IntelliJ IDEA
+*.iml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/deploymentTargetSelector.xml
+.idea/deviceManager.xml
+.idea/caches/deviceStreaming.xml
+
+# Builds nativos
+.externalNativeBuild/
+.cxx/
+
+# Assinatura e dados sensiveis
+*.jks
+*.keystore
+keystore.properties
+
+# Variaveis de ambiente e arquivos locais
+.env
+.env.*
+!.env.example
+
+# Sistema operacional e logs
+.DS_Store
+Thumbs.db
+*.log
