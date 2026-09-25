@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.reynanfc.cinelog.ui.home.HomeScreen
 import com.reynanfc.cinelog.ui.theme.CineLogTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,6 +19,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            CineLogTheme {
+                HomeScreen()
+            }
         }
     }
 }

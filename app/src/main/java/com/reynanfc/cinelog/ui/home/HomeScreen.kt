@@ -25,6 +25,7 @@ import com.reynanfc.cinelog.ui.components.CineLogTopBar
 fun HomeScreen() {
     var showBottomSheet by remember { mutableStateOf(false) }
     var selectedTab by remember { mutableStateOf(0) }
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = Color(0xFF120A09),
@@ -44,17 +45,14 @@ fun HomeScreen() {
                 modifier = Modifier.fillMaxSize()
                     .padding(innerPadding)
                     .padding(16.dp)
-
             ) {
                 Text(
-
                     text = "O que vamos assistir?",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 22.sp
                 )
             }
-
     }
 
     if (showBottomSheet) {
