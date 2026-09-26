@@ -20,30 +20,42 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     init {
-        loadMovies()
+        loadMovies(isRefresh = false)
     }
 
     fun onEvent(event: HomeUiEvent) {
         when (event) {
-            is HomeUiEvent.OnRetryClicked -> loadMovies()
+            is HomeUiEvent.OnRetryClicked -> loadMovies(isRefresh = false)
+            is HomeUiEvent.OnRefresh -> loadMovies(isRefresh = true)
         }
     }
 
-    private fun loadMovies() {
+    private fun loadMovies(isRefresh: Boolean) {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+
+            if (isRefresh) {
+                _uiState.update { it.copy(isRefreshing = true, errorMessage = null) }
+            } else {
+                _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+            }
+
             try {
                 val popular = movieRepository.getPopularMovies()
                 val nowPlaying = movieRepository.getNowPlayingMovies()
                 _uiState.update {
                     it.copy(
                         isLoading = false,
+                        isRefreshing = false,
                         popularMovies = popular,
                         nowPlayingMovies = nowPlaying
                     )
                 }
             } catch (e: Exception) {
-                _uiState.update { it.copy(isLoading = false, errorMessage = "Não foi possível carregar os filmes") }
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        isRefreshing = false,
+                        errorMessage = "Não foi possível carregar os filmes") }
             }
         }
     }}

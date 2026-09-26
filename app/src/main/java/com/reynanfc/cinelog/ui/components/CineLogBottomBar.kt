@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -29,7 +30,7 @@ fun CineLogBottomBar(
             selectedTextColor = Color.White,
 
             // Cor da pílula (indicador visual de fundo) do item SELECIONADO
-            indicatorColor = Color(0xFF762126), // Vermelho (ex: estilo Netflix)
+            indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.24f),
 
             // Cor do ícone e do texto quando NÃO SELECIONADO
             unselectedIconColor = Color.Gray,
