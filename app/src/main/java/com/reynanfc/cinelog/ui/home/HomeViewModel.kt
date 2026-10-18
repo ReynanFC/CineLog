@@ -3,6 +3,8 @@ package com.reynanfc.cinelog.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reynanfc.cinelog.domain.repository.MovieRepository
+import com.reynanfc.cinelog.ui.home.contract.HomeUiEvent
+import com.reynanfc.cinelog.ui.home.contract.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

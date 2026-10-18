@@ -19,4 +19,22 @@ class MovieRepositoryImpl @Inject constructor(
         val response = movieApiService.getNowPlayingMovies()
         return response.results.map { it.toMovie() }
     }
+
+    override suspend fun searchMovies(query: String, genreId: Int?): List<Movie> {
+        val trimmedQuery = query.trim()
+
+        val response = when {
+            trimmedQuery.isNotEmpty() -> movieApiService.searchMovies(query = trimmedQuery)
+            genreId != null -> movieApiService.discoverMoviesByGenre(genreId = genreId)
+            else -> movieApiService.getPopularMovies()
+        }
+
+        val movies = response.results.map { it.toMovie() }
+
+        return if (trimmedQuery.isNotEmpty() && genreId != null) {
+            movies.filter { movie -> genreId in movie.genreIds }
+        } else {
+            movies
+        }
+    }
 }

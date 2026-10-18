@@ -17,4 +17,19 @@ interface MovieApiService {
         @Query("page") page: Int = 1,
         @Query("language") language: String = "pt-BR"
     ): MovieResponseDto
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") query: String,
+        @Query("page") page: Int = 1,
+        @Query("language") language: String = "pt-BR"
+    ): MovieResponseDto
+
+    @GET("discover/movie")
+    suspend fun discoverMoviesByGenre(
+        @Query("with_genres") genreId: Int,
+        @Query("sort_by") sortBy: String = "popularity.desc",
+        @Query("page") page: Int = 1,
+        @Query("language") language: String = "pt-BR"
+    ): MovieResponseDto
 }

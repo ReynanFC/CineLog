@@ -38,6 +38,7 @@ import kotlin.math.absoluteValue
 fun MovieSection(
     title: String,
     movies: List<Movie>,
+    onMovieClick: (Movie) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (movies.isEmpty()) return
@@ -67,6 +68,7 @@ fun MovieSection(
             val movie = movies[page]
 
             Card(
+                onClick = { onMovieClick(movie) },
                 shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),

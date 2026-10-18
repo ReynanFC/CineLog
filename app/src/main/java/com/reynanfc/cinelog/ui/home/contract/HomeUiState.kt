@@ -1,4 +1,4 @@
-package com.reynanfc.cinelog.ui.home
+package com.reynanfc.cinelog.ui.home.contract
 
 import com.reynanfc.cinelog.domain.model.Movie
 

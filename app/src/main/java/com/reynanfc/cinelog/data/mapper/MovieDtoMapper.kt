@@ -13,6 +13,7 @@ fun MovieDto.toMovie(): Movie {
         posterUrl = posterPath?.let { path -> "${TMDB_IMAGE_BASE_URL}$path" },
         backdropUrl = backdropPath?.let { path -> "${TMDB_IMAGE_BASE_URL}$path" },
         releaseDate = releaseDate.orEmpty(),
-        voteAverage = (voteAverage * 10).roundToInt() / 10.0
+        voteAverage = (voteAverage * 10).roundToInt() / 10.0,
+        genreIds = genreIds
     )
 }

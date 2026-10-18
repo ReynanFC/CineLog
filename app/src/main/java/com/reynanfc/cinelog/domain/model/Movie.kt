@@ -7,5 +7,6 @@ data class Movie(
     val posterUrl: String?,
     val backdropUrl: String?,
     val releaseDate: String?,
-    val voteAverage: Double
+    val voteAverage: Double,
+    val genreIds: List<Int> = emptyList()
 )

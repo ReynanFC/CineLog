@@ -1,9 +1,5 @@
 package com.reynanfc.cinelog.ui.components
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -13,12 +9,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.reynanfc.cinelog.ui.navigation.TopLevelDestination
 
 
 @Composable
 fun CineLogBottomBar(
-    selectedTab: Int,
-    onTabSelected: (Int) -> Unit) {
+    selectedDestination: TopLevelDestination?,
+    onDestinationSelected: (TopLevelDestination) -> Unit
+) {
 
     NavigationBar(
         containerColor = Color(0xFF1E1210),
@@ -34,29 +32,27 @@ fun CineLogBottomBar(
 
             // Cor do ícone e do texto quando NÃO SELECIONADO
             unselectedIconColor = Color.Gray,
-            unselectedTextColor = Color.Gray        )
+            unselectedTextColor = Color.Gray
+        )
 
-        NavigationBarItem(
-            selected = selectedTab == 0,
-            onClick = { onTabSelected(0) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Início") },
-            label = { Text("Início") },
-            colors = itemColors
-        )
-        NavigationBarItem(
-            selected = selectedTab == 1,
-            onClick = { onTabSelected(1) },
-            icon = { Icon(Icons.Default.Search, contentDescription = "Buscar") },
-            label = { Text("Buscar") },
-            colors = itemColors
-        )
-        NavigationBarItem(
-            selected = selectedTab == 2,
-            onClick = { onTabSelected(2) },
-            icon = { Icon(Icons.Default.Favorite, contentDescription = "Favoritos") },
-            label = { Text(text = "Favoritos") },
-            colors = itemColors
-        )
+        TopLevelDestination.entries.forEach { destination ->
+            NavigationBarItem(
+                selected = destination == selectedDestination,
+                onClick = { onDestinationSelected(destination) },
+                icon = { Icon(destination.icon, contentDescription = destination.label) },
+                label = { Text(destination.label) },
+                colors = itemColors
+            )
+        }
     }
 
+}
+
+@Preview
+@Composable
+private fun CineLogBottomBarPreview() {
+    CineLogBottomBar(
+        selectedDestination = TopLevelDestination.HOME,
+        onDestinationSelected = {}
+    )
 }
